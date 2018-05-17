@@ -263,7 +263,7 @@ docker_exec() {
         CONTAINERNAME=$2
         shift; shift;
         COMMAND="$@"
-        CONTAINER=$(docker ps | grep $CONTAINERNAME | awk '{print $1}')
+        CONTAINER=$(docker ps -a | grep $CONTAINERNAME | awk '{print $1}')
 
         echo "#==[ $COMMAND ]==" >> $LOGFILE
         docker exec $CONTAINER $COMMAND >> $LOGFILE 2>&1
@@ -482,6 +482,6 @@ if check_rpm $DOCKER_PKG && on_admin; then
     OF=salt-master.txt
     plugin_message "All data stored in $OF"
 
-    docker_exec $OF salt-master salt-key
+    docker_exec $OF salt-master_velum salt-key
     plugin_message Done
 fi
