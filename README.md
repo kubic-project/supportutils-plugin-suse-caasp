@@ -31,12 +31,15 @@ crictl inspect
 
 Output from commands
 ```
-kubectl config view
 kubectl version
 kubectl api-versions
+kubectl config view
+kubectl get pods -n kube-system -o wide
+kubectl get events --sort-by=.metadata.creationTimestamp
+kubectl get nodes -o wide
+kubectl get all -A -o wide
+kubectl get nodes -o yaml
 kubectl cluster-info dump --all-namespaces --output-directory=/var/log/kubernetes
-kubectl get nodes
-kubectl get nodes
 for srv in kube-proxy kubelet; do
     systemctl status --full $srv
 done
