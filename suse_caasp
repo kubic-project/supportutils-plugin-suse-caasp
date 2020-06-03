@@ -259,7 +259,7 @@ if check_rpm kubernetes-client && [ -f /etc/kubernetes/admin.conf ]; then
     set -a
     export KUBECONFIG=/etc/kubernetes/admin.conf
     if kubectl -n kube-system cluster-info dump &>/dev/null; then
-        timeout 3 kubectl cluster-info dump --output-directory=$KUBECTL_LOG; echo
+        timeout 3m kubectl cluster-info dump --output-directory=$KUBECTL_LOG; echo
         find_and_log_files $OF $KUBECTL_LOG
         rm ${KUBECTL_LOG} -fr
     fi
